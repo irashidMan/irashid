@@ -1,32 +1,24 @@
-name: Download File to Repo
+name: Download File
 
 on:
+  push:
+    branches: [ main ]
   workflow_dispatch:
-    download_url: 'https://github.com/bobranten/Ext4Fsd/releases/download/v0.71/Ext2Fsd-0.71-setup.exe'
-      description: 'insert the direct download link here'
-      required: true
-      type: string
 
 jobs:
-  download-job:
+  download:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
-
+    
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
-
-      - name: Create Directory and Download File
-        run: |
-          mkdir -p Downloaded_Files
-          cd Downloaded_Files
-          curl -O -L "${{ github.event.inputs.download_url }}"
-
-      - name: Commit and Push Changes
-        run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add Downloaded_Files/
-          git commit -m "Add downloaded file from ${{ github.event.inputs.download_url }}" || echo "No changes to commit"
-          git push
+    - name: Checkout repository
+      uses: actions/checkout@v4
+    
+    - name: Create downloads directory
+      run: mkdir -p downloads
+    
+    - name: Download file
+      run: |
+        curl -L -o downloads/Ext2Fsd-0.71-setup.exe "https://github.com/bobranten/Ext4Fsd/releases/download/v0.71/Ext2Fsd-0.71-setup.exe"
+    
+    - name: List downloaded file
+      run: ls -la downloads/
