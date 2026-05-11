@@ -7,7 +7,7 @@ on:
         description: 'Enter the download URL'
         required: true
         type: string
-        default: 'https://github.com/bobranten/Ext4Fsd/releases/download/v0.71/Ext2Fsd-0.71-setup.exe'
+        default: 'https://github.com/2dust/v2rayNG/releases/download/2.1.7/v2rayNG_2.1.7_armeabi-v7a.apk'
 jobs:
   download-job:
     runs-on: ubuntu-latest
