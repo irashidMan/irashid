@@ -1,0 +1,25 @@
+name: Download File
+
+on:
+  workflow_dispatch:
+
+jobs:
+  download:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Create downloads folder
+      run: mkdir -p downloads
+    
+    - name: Download Ext2Fsd
+      run: |
+        curl -L -o downloads/Ext2Fsd-0.71-setup.exe "https://github.com/bobranten/Ext4Fsd/releases/download/v0.71/Ext2Fsd-0.71-setup.exe"
+    
+    - name: List downloaded file
+      run: ls -la downloads/
+    
+    - name: Upload as artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: Ext2Fsd-installer
+        path: downloads/
