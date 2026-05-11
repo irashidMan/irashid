@@ -2,11 +2,10 @@ name: Download File to Repo
 
 on:
   workflow_dispatch:
-    inputs:
-      download_url: 'https://github.com/bobranten/Ext4Fsd/releases/download/v0.71/Ext2Fsd-0.71-setup.exe'
-        description: 'insert the direct download link here'
-        required: true
-        type: string
+    download_url: 'https://github.com/bobranten/Ext4Fsd/releases/download/v0.71/Ext2Fsd-0.71-setup.exe'
+      description: 'insert the direct download link here'
+      required: true
+      type: string
 
 jobs:
   download-job:
