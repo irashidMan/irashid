@@ -4,9 +4,10 @@ on:
   workflow_dispatch:
     inputs:
       download_url:
-        description: 'https://github.com/bobranten/Ext4Fsd/releases/download/v0.71/Ext2Fsd-0.71-setup.exe'
+        description: 'Enter the download URL'
         required: true
         type: string
+        default: 'https://github.com/bobranten/Ext4Fsd/releases/download/v0.71/Ext2Fsd-0.71-setup.exe'
 jobs:
   download-job:
     runs-on: ubuntu-latest
