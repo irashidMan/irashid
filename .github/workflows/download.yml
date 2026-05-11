@@ -1,18 +1,13 @@
 name: Download File
 
 on:
-  push:
-    branches: [ master ]
-  workflow_dispatch:  # Allows manual trigger
+  workflow_dispatch:
 
 jobs:
   download:
     runs-on: ubuntu-latest
     
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
-    
     - name: Create downloads directory
       run: mkdir -p downloads
     
@@ -20,5 +15,8 @@ jobs:
       run: |
         curl -L -o downloads/Ext2Fsd-0.71-setup.exe "https://github.com/bobranten/Ext4Fsd/releases/download/v0.71/Ext2Fsd-0.71-setup.exe"
     
-    - name: List downloaded file
-      run: ls -la downloads/
+    - name: Upload as artifact (THIS SAVES THE FILE)
+      uses: actions/upload-artifact@v4
+      with:
+        name: Ext2Fsd-installer
+        path: downloads/
